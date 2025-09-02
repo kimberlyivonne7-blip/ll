@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Surpriseee 💘💘</title>
+<style>
+:root{--bg1:#ff6aa2;--bg2:#ff9a76;--bg3:#ffd166;}
+*{box-sizing:border-box;}
+body{
+  margin:0;font-family:system-ui,sans-serif;
+  background:linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+  background-size:300% 300%;
+  animation:bgMove 12s ease-in-out infinite;
+  display:flex;justify-content:center;align-items:center;
+  min-height:100vh;overflow:hidden;position:relative;
+}
+@keyframes bgMove{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+.card{
+  background:#ffffffdd;
+  padding:24px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 50px #0003;
+  max-width:500px;
+  width:90%;
+  backdrop-filter: blur(10px);
+  animation:fadeIn 1s ease;
+  z-index:10;
+}
+@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+h1{margin:0 0 14px;}
+input{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #0002;
+  width:100%;
+  margin-bottom:12px;
+  font-size:1rem;
+}
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  background:#111;
+  color:#fff;
+  cursor:pointer;
+  font-weight:bold;
+  transition:all .2s;
+}
+button:hover{transform:scale(1.05);}
+.hidden{display:none;}
+.hearts span{
+  position:absolute;bottom:-10vh;
+  font-size:clamp(18px,4vw,40px);
+  animation:floatUp linear forwards;
+  opacity:0.9;
+}
+@keyframes floatUp{to{transform:translateY(-120vh) translateX(var(--drift));opacity:0}}
+.mensaje{
+  font-size:1.2rem;
+  line-height:1.6;
+  white-space:pre-wrap;
+  margin-bottom:14px;
+}
+.final{
+  font-size:1.5rem;font-weight:bold;
+  margin-top:20px;
+  animation:pop .6s ease;
+}
+@keyframes pop{0%{transform:scale(0)}80%{transform:scale(1.1)}100%{transform:scale(1)}}
+
+/* Corazón animado */
+.draw{
+  width:200px;height:180px;
+  margin:20px auto 0;
+}
+.draw path{
+  fill:none;stroke:#e63946;stroke-width:6;
+  stroke-dasharray:1000;stroke-dashoffset:1000;
+  animation:drawPath 3s ease forwards;
+}
+@keyframes drawPath{to{stroke-dashoffset:0;}}
+
+/* Flores pantalla final */
+.flores{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.flor{
+  position:absolute;
+  width:50px;
+  height:50px;
+  transform:scale(0);
+  opacity:0;
+  animation:bloom 3s ease forwards;
+}
+.petalo{
+  position:absolute;
+  width:25px;height:25px;
+  background:radial-gradient(circle at 30% 30%, #fff, pink);
+  border-radius:50%;
+  box-shadow:0 0 10px #fff8;
+}
+.centro{
+  position:absolute;
+  width:20px;height:20px;
+  background:radial-gradient(circle,#ffd700,#ffae00);
+  border-radius:50%;
+  top:15px;left:15px;
+  box-shadow:0 0 10px #fff9;
+  z-index:2;
+}
+.flor .p1{top:0;left:12px;}
+.flor .p2{top:12px;left:0;}
+.flor .p3{top:12px;right:0;}
+.flor .p4{bottom:0;left:12px;}
+@keyframes bloom{0%{transform:scale(0);opacity:0}50%{transform:scale(1.4);opacity:1}100%{transform:scale(1);opacity:1}}
+
+/* Paisaje animado pantalla final */
+#paisajeFinal{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:-1;pointer-events:none;overflow:hidden;
+  background:linear-gradient(to top,#87ceeb,#ffffff 80%);
+}
+
+/* Sol */
+.sol{
+  position:absolute;top:50px;left:50%;width:80px;height:80px;
+  margin-left:-40px;
+  background:radial-gradient(circle,#fff700,#ffaa00);
+  border-radius:50%;
+  animation:solMover 15s linear infinite alternate;
+}
+@keyframes solMover{0%{top:50px;}100%{top:30px;}}
+
+/* Montañas degradadas y sombras */
+.montana{
+  position:absolute;bottom:0;
+  width:300px;height:150px;
+  background:linear-gradient(to top,#228B22,#32CD32);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  box-shadow:2px -2px 8px rgba(0,0,0,0.2);
+  opacity:0;transform:scale(0);
+  transition:all 2s ease;
+}
+
+/* Casita */
+.casita{
+  position:absolute;
+  bottom:0;width:80px;height:80px;
+  background:linear-gradient(to top,#ffb347,#ffcc88);
+  border:2px solid #000;
+  box-shadow:1px 1px 6px rgba(0,0,0,0.2);
+  opacity:0;transform:scale(0);
+}
+
+/* Árboles animados */
+.arbol{
+  position:absolute;
+  bottom:0;width:30px;height:60px;
+  background:#2e8b57;border-radius:5px;
+  opacity:0;transform:scale(0);
+  animation:arbolMover 3s ease-in-out infinite alternate;
+}
+@keyframes arbolMover{0%{transform:scale(1) rotate(0deg);}50%{transform:scale(1.02) rotate(1deg);}100%{transform:scale(1) rotate(0deg);}}
+
+/* Pareja */
+.pareja{
+  position:absolute;bottom:80px;width:20px;height:50px;
+  background:#ff9999;border-radius:10px;
+  opacity:0;transform:scale(0);
+}
+
+/* Hijos */
+.hijo{
+  position:absolute;bottom:60px;width:15px;height:30px;
+  background:#99ccff;border-radius:8px;
+  opacity:0;transform:scale(0);
+}
+
+/* Mascota */
+.mascota{
+  position:absolute;bottom:40px;width:20px;height:20px;
+  background:#8b4513;border-radius:50%;
+  opacity:0;transform:scale(0);
+}
+
+</style>
+</head>
+<body>
+
+<!-- Pantalla de clave -->
+<div class="card" id="login">
+  <h1>🔒 Blocked 🔒</h1>
+  <p>Escribe la clave:</p>
+  <input type="password" id="clave" placeholder="Pista: una cancion 💌"/>
+  <button onclick="checkClave()">Desbloquear</button>
+</div>
+
+
+
+<!-- Contenido principal -->
+<div class="card hidden" id="contenido">
+  <h1>❣️</h1>
+  <div class="mensaje" id="typebox"></div>
+  <button id="btnOtro" onclick="confesion()">Click</button>
+  <button id="btnPregunta" class="hidden" onclick="preguntaFinal()">??</button>
+</div>
+
+<!-- Pantalla final -->
+<div class="card hidden" id="final">
+  <h1>Y ahora...</h1>
+  <p id="preguntaTexto">Déjame pertenecerte una y mil veces más,
+tomarnos de las manos y besarnos sin cesar,
+quedarme aquí, descubriendo tu pensar,
+y así poder suspirar una vez más.</p>
+  <button onclick="respuestaSi()">Por supuesto que sí</button>
+</div>
+
+<!-- Pantalla respuesta -->
+<div class="card hidden" id="respuesta">
+  <h1 class="final"> Sabia que sii jj🥰💕</h1>
+  <p>Te quiero milochomil ❣️</p>
+</div>
+
+<!-- Corazones y flores -->
+<div class="hearts" id="hearts"></div>
+<div class="flores" id="flores"></div>
+<div id="paisajeFinal"></div>
+
+<!-- Música -->
+<audio controls loop muted>
+    <source src="cancion.mp3.mpeg">
+</audio>
+
+<script>
+// Mensajes y clave
+const claveCorrecta="viento";
+const mensajes=[
+  "Quisiera recorrer tus pensamientos como caminos que ya conozco 🧠",
+  "Descubrir tus silencios y susurrarles secretos 😶‍🌫️",
+  "Escuchar tus sueños antes de que los nombres tu mismo 🗣️",
+  "Sentir tus latidos como si fueran ecos de los mios 💓",
+  "Leer lo que escondes tras tus miradas 👁️"
+];
+let idx=0;
+
+// Funciones principales
+function checkClave(){
+  const clave=document.getElementById("clave").value.trim().toLowerCase();
+  if(clave===claveCorrecta){
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("contenido").classList.remove("hidden");
+    lanzarCorazones();
+    typeWriter(mensajes[idx]);
+    document.getElementById("musica").play().catch(()=>{});
+  }else{alert("Incorrectaaaaaaaaaa ☹️");}
+}
+
+function typeWriter(text,speed=35){
+  const box=document.getElementById("typebox");
+  box.textContent="";
+  let i=0;
+  const typing=setInterval(()=>{
+    box.textContent+=text[i]??"";
+    i++;
+    if(i>text.length){clearInterval(typing);}
+  },speed);
+}
+
+function confesion(){
+  idx++;
+  if(idx<mensajes.length){
+    typeWriter(mensajes[idx]);
+    lanzarCorazones();
+  }
+  if(idx===mensajes.length-1){
+    document.getElementById("btnOtro").classList.add("hidden");
+    document.getElementById("btnPregunta").classList.remove("hidden");
+  }
+}
+
+function preguntaFinal(){
+  document.getElementById("contenido").classList.add("hidden");
+  document.getElementById("final").classList.remove("hidden");
+  lanzarCorazones();
+}
+
+function respuestaSi(){
+  document.getElementById("final").classList.add("hidden");
+  document.getElementById("respuesta").classList.remove("hidden");
+  lanzarFlores();
+  setInterval(lanzarFlores,1200);
+  crearPaisajeAnimado();
+}
+
+// Corazones flotantes
+function lanzarCorazones(){
+  const cont=document.getElementById("hearts");
+  for(let i=0;i<18;i++){
+    const s=document.createElement("span");
+    s.textContent=["❤️","💗","💞","💘","💓","🩷"][Math.floor(Math.random()*6)];
+    const left=Math.random()*100;
+    const dur=6+Math.random()*6;
+    const delay=Math.random()*4;
+    const drift=(Math.random()>.5?1:-1)*(20+Math.random()*60)+"px";
+    s.style.left=left+"%";
+    s.style.animationDuration=dur+"s";
+    s.style.animationDelay=delay+"s";
+    s.style.setProperty("--drift",drift);
+    cont.appendChild(s);
+    setTimeout(()=>s.remove(),(dur+delay)*1000+200);
+  }
+}
+setInterval(lanzarCorazones,2000);
+
+// Flores pantalla final
+function lanzarFlores(){
+  const cont=document.getElementById("flores");
+  for(let i=0;i<8;i++){
+    const flor=document.createElement("div");
+    flor.className="flor";
+    flor.style.left=Math.random()*100+"%";
+    flor.style.top=Math.random()*100+"%";
+    flor.style.animationDelay=(Math.random()*2)+"s";
+    ['p1','p2','p3','p4'].forEach(c=>{
+      const p=document.createElement("div");
+      p.className="petalo "+c;
+      flor.appendChild(p);
+    });
+    const c=document.createElement("div");
+    c.className="centro";
+    flor.appendChild(c);
+    cont.appendChild(flor);
+    setTimeout(()=>flor.remove(),6000);
+  }
+}
+
+// Paisaje animado pantalla final
+function crearPaisajeAnimado(){
+  const base=document.getElementById("paisajeFinal");
+
+  // Montañas
+  for(let i=0;i<3;i++){
+    const m=document.createElement("div");
+    m.className="montana";
+    m.style.left=(i*25+10)+"%";
+    base.appendChild(m);
+    setTimeout(()=>{m.style.opacity=1; m.style.transform="scale(1)";},200+i*500);
+  }
+
+  // Casita
+  const casa=document.createElement("div");
+  casa.className="casita";
+  casa.style.left="50%";
+  casa.style.marginLeft="-40px";
+  base.appendChild(casa);
+  setTimeout(()=>{casa.style.opacity=1; casa.style.transform="scale(1)";},1500);
+
+  // Árboles
+  for(let i=0;i<4;i++){
+    const arbol=document.createElement("div");
+    arbol.className="arbol";
+    arbol.style.left=(10+i*20)+"%";
+    base.appendChild(arbol);
+    setTimeout(()=>{arbol.style.opacity=1; arbol.style.transform="scale(1)";},1000+i*300);
+  }
+
+  // Pareja
+  const pareja=document.createElement("div");
+  pareja.className="pareja";
+  pareja.style.left="55%";
+  base.appendChild(pareja);
+  setTimeout(()=>{pareja.style.opacity=1; pareja.style.transform="scale(1)";},2000);
+
+  // Hijos
+  for(let i=0;i<2;i++){
+    const hijo=document.createElement("div");
+    hijo.className="hijo";
+    hijo.style.left=(52+i*5)+"%";
+    base.appendChild(hijo);
+    setTimeout(()=>{hijo.style.opacity=1; hijo.style.transform="scale(1)";},2200+i*300);
+  }
+
+  // Mascota
+  const mascota=document.createElement("div");
+  mascota.className="mascota";
+  mascota.style.left="48%";
+  base.appendChild(mascota);
+  setTimeout(()=>{mascota.style.opacity=1; mascota.style.transform="scale(1)";},2500);
+
+  // Sol
+  const sol=document.createElement("div");
+  sol.className="sol";
+  base.appendChild(sol);
+}
+</script>
+</body>
+</html>
